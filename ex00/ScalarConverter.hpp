@@ -6,7 +6,7 @@
 /*   By: bde-wits <bde-wits@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 05:17:19 by bde-wits          #+#    #+#             */
-/*   Updated: 2025/03/15 07:56:35 by bde-wits         ###   ########.fr       */
+/*   Updated: 2025/03/16 09:30:37 by bde-wits         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <string>
 #include <exception>
 #include <fstream>
+#include <cstdlib>
+#include <limits>
 
 class	ScalarConverter
 {

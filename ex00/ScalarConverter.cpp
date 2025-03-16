@@ -6,7 +6,7 @@
 /*   By: bde-wits <bde-wits@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 06:25:13 by bde-wits          #+#    #+#             */
-/*   Updated: 2025/03/16 08:03:06 by bde-wits         ###   ########.fr       */
+/*   Updated: 2025/03/16 09:50:03 by bde-wits         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ ScalarConverter&	ScalarConverter::operator=(ScalarConverter const &cpy)
 void ScalarConverter::convert(std::string base)
 {
 	long long	temp;
+	double		tempf;
 
 	if (base.empty() == true)
 	{
@@ -65,12 +66,28 @@ void ScalarConverter::convert(std::string base)
 	}
 	else
 	{
-		temp = std::stoi(base, nullptr, 10);
-		if (temp == NULL)
+		try //convert in int
+		{
+			temp = std::stoi(base, nullptr, 10);
+			// if (temp == NULL)
+			// 	std::cout << "int: impossible" << std::endl;
+			// if (temp < -2147483648 || temp > 2147483647)
+			// 	std::cout << "int: impossible" << std::endl;
+			// else
+			std::cout << "int: " << static_cast<int>(temp) << std::endl;
+		}
+		catch(const std::exception& e)
+		{
 			std::cout << "int: impossible" << std::endl;
-		else if (temp < -2147483648 || temp > 2147483647)
-			std::cout << "int: impossible" << std::endl;
-		else
-			std::cout << "int:" << static_cast<int>(temp) << std::endl;
+		}
+		try
+		{
+			
+		}
+		catch(const std::exception& e)
+		{
+			std::cout << "float: impossible" << std::endl;
+		}
+		
 	}
 }
