@@ -6,7 +6,7 @@
 /*   By: bde-wits <bde-wits@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 06:25:13 by bde-wits          #+#    #+#             */
-/*   Updated: 2025/03/16 09:50:03 by bde-wits         ###   ########.fr       */
+/*   Updated: 2025/03/16 11:36:57 by bde-wits         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ ScalarConverter&	ScalarConverter::operator=(ScalarConverter const &cpy)
 void ScalarConverter::convert(std::string base)
 {
 	long long	temp;
-	double		tempf;
+	std::istringstream stream(base);
+	// double		tempf;
 
 	if (base.empty() == true)
 	{
@@ -66,9 +67,36 @@ void ScalarConverter::convert(std::string base)
 	}
 	else
 	{
-		try //convert in int
+		
+		//convert into int
+		stream.clear();
+		stream.seekg(0);
+		stream >> temp;
+		if (stream.fail() == true)
 		{
-			temp = std::stoi(base, nullptr, 10);
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+		}
+		else if (temp < -2147483648 || temp > 2147483647)
+		{
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+		}
+		else
+		{
+			//convert into char
+			if (temp >= 0 && temp <= 32)
+				std::cout << "char : not displayable" << std::endl;
+			else if (temp < 33 || temp > 176)
+				std::cout << "char: impossible" << std::endl;
+			else
+				std::cout << "char: " << static_cast<char>(temp) << std::endl;
+			std::cout << "int: " << temp << std::endl;
+		}
+		
+		/*try //convert in int
+		{
+			temp = std::stoi(base, NULL, 10);
 			// if (temp == NULL)
 			// 	std::cout << "int: impossible" << std::endl;
 			// if (temp < -2147483648 || temp > 2147483647)
@@ -79,10 +107,10 @@ void ScalarConverter::convert(std::string base)
 		catch(const std::exception& e)
 		{
 			std::cout << "int: impossible" << std::endl;
-		}
+		}*/
 		try
 		{
-			
+			// tempf = std::stod(base, NULL, 10);
 		}
 		catch(const std::exception& e)
 		{
