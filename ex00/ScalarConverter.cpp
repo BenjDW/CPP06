@@ -6,7 +6,7 @@
 /*   By: bde-wits <bde-wits@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 06:25:13 by bde-wits          #+#    #+#             */
-/*   Updated: 2025/03/16 11:36:57 by bde-wits         ###   ########.fr       */
+/*   Updated: 2025/03/16 11:50:01 by bde-wits         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void ScalarConverter::convert(std::string base)
 {
 	long long	temp;
 	std::istringstream stream(base);
-	// double		tempf;
+	double		tempf;
 
 	if (base.empty() == true)
 	{
@@ -67,7 +67,6 @@ void ScalarConverter::convert(std::string base)
 	}
 	else
 	{
-		
 		//convert into int
 		stream.clear();
 		stream.seekg(0);
@@ -93,29 +92,19 @@ void ScalarConverter::convert(std::string base)
 				std::cout << "char: " << static_cast<char>(temp) << std::endl;
 			std::cout << "int: " << temp << std::endl;
 		}
-		
-		/*try //convert in int
-		{
-			temp = std::stoi(base, NULL, 10);
-			// if (temp == NULL)
-			// 	std::cout << "int: impossible" << std::endl;
-			// if (temp < -2147483648 || temp > 2147483647)
-			// 	std::cout << "int: impossible" << std::endl;
-			// else
-			std::cout << "int: " << static_cast<int>(temp) << std::endl;
-		}
-		catch(const std::exception& e)
-		{
-			std::cout << "int: impossible" << std::endl;
-		}*/
-		try
-		{
-			// tempf = std::stod(base, NULL, 10);
-		}
-		catch(const std::exception& e)
+		//convert into float/double
+		stream.clear();// clear error
+		stream.seekg(0);// cursor to (pos)
+		stream >> tempf;
+		if (stream.fail() == true)
 		{
 			std::cout << "float: impossible" << std::endl;
+			std::cout << "double: impossible" << std::endl;
 		}
-		
+		else
+		{
+			std::cout << "float: " << static_cast<float>(tempf) << "f" << std::endl;
+			std::cout << "double: " << tempf << std::endl;
+		}
 	}
 }
