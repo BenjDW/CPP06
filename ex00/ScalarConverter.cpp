@@ -6,7 +6,7 @@
 /*   By: bde-wits <bde-wits@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 06:25:13 by bde-wits          #+#    #+#             */
-/*   Updated: 2025/03/16 11:50:01 by bde-wits         ###   ########.fr       */
+/*   Updated: 2025/03/17 08:43:24 by bde-wits         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,30 @@ void ScalarConverter::convert(std::string base)
 	}
 	else
 	{
+		if (base == "nan" || base == "nanf")
+		{
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+			std::cout << "float: nanf" << std::endl;
+			std::cout << "double: nan" << std::endl;
+			return;
+		}
+		if (base == "+inf" || base == "+inff" || base == "inf" || base == "inff")
+		{
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+			std::cout << "float: +inff" << std::endl;
+			std::cout << "double: +inf" << std::endl;
+			return;
+		}
+		if (base == "-inf" || base == "-inff")
+		{
+			std::cout << "char: impossible" << std::endl;
+			std::cout << "int: impossible" << std::endl;
+			std::cout << "float: -inff" << std::endl;
+			std::cout << "double: -inf" << std::endl;
+			return;
+		}
 		//convert into int
 		stream.clear();
 		stream.seekg(0);
