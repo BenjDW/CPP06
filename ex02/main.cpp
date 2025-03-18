@@ -6,7 +6,7 @@
 /*   By: bde-wits <bde-wits@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 11:27:54 by bde-wits          #+#    #+#             */
-/*   Updated: 2025/03/17 14:16:44 by bde-wits         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:34:32 by bde-wits         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,29 +19,62 @@ Base *generate(void)
 {
 	int randomindex = rand() % 3;
 	
-	if (randomindex == 0) // create A
+	if (randomindex == 0)
 		return new A();
-	else if (randomindex == 1) // create B
+	else if (randomindex == 1)
 		return new B();
-	else // create C
+	else
 		return new C();
 }
 
-int	main()
+void identify(Base* p)
 {
-	Base *test = generate();
-
-	delete test;
+    if (dynamic_cast<A*>(p))
+        std::cout << "A" << std::endl;
+    else if (dynamic_cast<B*>(p))
+        std::cout << "B" << std::endl;
+    else if (dynamic_cast<C*>(p))
+        std::cout << "C" << std::endl;
+    else
+        std::cout << "error wrong type" << std::endl;
 }
 
-// Base *generate(void)
-// {
-// 	int randomindex = rand() % 3;
+void identify(Base& p)
+{
+    try
+    {
+        (void)dynamic_cast<A&>(p);
+        std::cout << "A" << std::endl;
+        return;
+    }
+    catch (std::exception &e) {}
+
+    try
+    {
+        (void)dynamic_cast<B&>(p);
+        std::cout << "B" << std::endl;
+        return;
+    }
+    catch (std::exception &e) {}
+
+    try
+    {
+        (void)dynamic_cast<C&>(p);
+        std::cout << "C" << std::endl;
+        return;
+    }
+    catch (std::exception &e) {}
+    std::cout << "error wrong type" << std::endl;
+}
+
+
+int	main()
+{
+	srand(time(NULL));
+	Base* test = generate();
 	
-// 	if (randomindex == 0) // create A
-// 		return new A();
-// 	else if (randomindex == 1) // create B
-// 		return new B();
-// 	else // create C
-// 		return new C();
-// }
+	identify(test);
+	identify(*test);
+	
+	delete test;
+}
