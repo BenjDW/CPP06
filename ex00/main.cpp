@@ -6,16 +6,19 @@
 /*   By: bde-wits <bde-wits@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 07:19:24 by bde-wits          #+#    #+#             */
-/*   Updated: 2025/03/17 09:48:09 by bde-wits         ###   ########.fr       */
+/*   Updated: 2025/03/20 11:54:57 by bde-wits         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	(void)argc;
-	ScalarConverter	test;
+    if (argc != 2)
+    {
+        std::cerr << "Usage: ./convert <value>" << std::endl;
+        return (1);
+    }
 
-	test.convert(argv[1]);
+    ScalarConverter::convert(argv[1]);
 }
